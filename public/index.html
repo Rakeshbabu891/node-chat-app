@@ -8,14 +8,8 @@
     <p>This is html page</p>
 
     <script src = '/socket.io/socket.io.js'></script>
-    <script>
-       var socket = io();
-       socket.on('connect', () => {
-         console.log('connected to the server');
-       });
-       socket.on('disconnect', function (data) {
-         console.log('disconnected from server');
-     });
+    <script src = '/js/index.js'>
+
     </script>
   </body>
 </html>
