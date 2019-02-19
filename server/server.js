@@ -21,13 +21,13 @@ socket.broadcast.emit('newMessage',generateMessage('Admin','New User has been jo
    console.log('createMessage',message);
    io.emit('newMessage',generateMessage(message.from,message.text));
    callback('this is from server');
-   // console.log(message);
-   // io.emit('newMessage',{
-   //   text:message.text,
-   //   from:message.from,
-   //   createdAt:new Date().getTime().toString()
-   // });
+
 });
+
+socket.on('createLocation', (coords) => {
+  io.emit('newMessage',generateMessage('Admin',`${coords.latitude},${coords.longitude}`))
+});
+
 socket.on('disconnect', () => {
     console.log('user was disconnected');
   });
