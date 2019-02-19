@@ -3,7 +3,7 @@ const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 
-var {generateMessage} = require('./utils/message.js');
+var {generateMessage,generateLocationMessage} = require('./utils/message.js');
 var publicPath = path.join(__dirname + '../../public');
 var app = express();
 var server = http.createServer(app);
@@ -25,7 +25,7 @@ socket.broadcast.emit('newMessage',generateMessage('Admin','New User has been jo
 });
 
 socket.on('createLocation', (coords) => {
-  io.emit('newMessage',generateMessage('Admin',`${coords.latitude},${coords.longitude}`))
+  io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude, coords.longitude));
 });
 
 socket.on('disconnect', () => {
